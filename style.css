@@ -256,7 +256,11 @@ li > a:hover{
 
 /* hero */
 #hero{
-    background-image: url("/image/hero.jpg");
+    background-image: url("images/hero-dining-room.jpg");
+    background-image: image-set(
+        url("images/hero-dining-room.webp") type("image/webp"),
+        url("images/hero-dining-room.jpg") type("image/jpeg")
+    );
     height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -532,7 +536,7 @@ hr {
     margin-left: 150px;
 }
 
-.IMG1 > img{
+.IMG1 img{
     height: 300px;
     width: 300px;
     /* margin-left: 150px; */
@@ -544,7 +548,7 @@ hr {
     width: 300px;
     margin-left: 80px;
 }
-.IMG2 > img{
+.IMG2 img{
     height: 300px;
     width: 300px;
     /* margin-left: 100px; */
@@ -556,7 +560,7 @@ hr {
     margin-left: 80px;
 }
 
-.IMG3 > img{
+.IMG3 img{
     height: 300px;
     width: 300px;
     /* margin-left: 100px; */

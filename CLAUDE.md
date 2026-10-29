@@ -13,6 +13,13 @@
 ## Design rules
 - Keep the current visual style unless told otherwise: dark background, gold/ivory/coffee palette (`--adyra-*` variables in `style.css`), Cormorant Garamond for display headings, large italic serif headlines, gold accents and thin gold dividers.
 
+## Images
+- All images live in `images/`, named in lowercase-kebab-case (no spaces or parentheses). Paths use forward slashes.
+- After adding or replacing a JPG/PNG, run `npm install` (once) then `npm run images` to generate the WebP versions (max 1600px wide, quality 80). Commit both files.
+- Markup: `<picture>` with a WebP `<source>` and a JPG `<img>` fallback. Every `<img>` below the hero gets `loading="lazy"` and `width`/`height` set to the file's real pixel size. The hero is a CSS background using `image-set()`.
+- Alt text describes what's actually in the photo; purely decorative images get `alt=""`.
+- Only use free-license images (Unsplash, Pexels). No photos showing bars, bottles or alcohol.
+
 ## FACTS
 
 - Name: Adyra Fine Dining (short form: Adyra). Use these exact spellings everywhere.

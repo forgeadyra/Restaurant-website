@@ -1,0 +1,11 @@
+{
+  "name": "adyra-fine-dining",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/convert-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}

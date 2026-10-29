@@ -10,6 +10,7 @@
 ## Content rules
 - Never use lorem ipsum or placeholder text.
 - Never invent awards, ratings, or reviews (e.g. no Michelin stars, star ratings, testimonials).
+- Visible text uses typographic apostrophes and dashes (’ — –), never straight `'` in copy.
 - All business facts (hours, address, phone, email, founding year, menu items, prices, seating, etc.) must come from the FACTS section below. Never contradict them. If a fact is needed and isn't listed, ask instead of making one up.
 
 - The menu (dishes, prices, descriptions, photos) lives only in the `MENU` array in `script.js`. Edit it there, not in the HTML. Prices are plain numbers in INR, exclusive of GST.

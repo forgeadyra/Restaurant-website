@@ -244,7 +244,7 @@ const MENU = [
         category: 'desserts', name: 'Thandai Kulfi', price: 345, description: 'Saffron, fennel, rose, pistachio.',
         image: { webp: 'images/thandai-kulfi.webp', jpg: 'images/thandai-kulfi.jpg', width: 720, height: 720, alt: 'Three sticks of thandai kulfi on a dark plate, scattered with pistachio and almond' }
     },
-    { category: 'desserts', name: 'Mathura Peda Cheesecake', price: 395, description: "Our tribute to the city's famous sweet." },
+    { category: 'desserts', name: 'Mathura Peda Cheesecake', price: 395, description: 'Our tribute to the city’s famous sweet.' },
     { category: 'desserts', name: 'Chocolate Bavarois', price: 425, description: 'Dark chocolate mousse, berry compote.' },
 
     // Beverages

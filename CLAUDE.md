@@ -27,6 +27,15 @@
 - New indexable pages go in `sitemap.xml`. `thank-you.html` stays `noindex` and out of the sitemap.
 - `favicon.svg` is the source for all icons. After editing it or replacing the hero image, run `npm run brand-assets` to regenerate favicon.ico, apple-touch-icon.png, icon-192/512.png and og-image.jpg.
 
+## Responsive and accessibility
+- Must work with no horizontal scroll at 360, 390, 768, 1024 and 1440px. No fixed pixel widths on layout containers or images. Use `max-width`, `clamp()` and `aspect-ratio` + `object-fit: cover`.
+- Breakpoints in `style.css`: 1100px (About and Reservations stack), 1000px (footer stacks), 900px (hamburger), 767px (gallery stacks, 44px tap targets), 600px (form rows stack, smaller header).
+- Tap targets on mobile at least 44×44px (links inside sentences are exempt).
+- Text contrast WCAG AA (4.5:1, or 3:1 for text 24px+). Known-safe colours on the dark background: `#c0a887`, `#958774` (hints/placeholders, the dimmest allowed), `#f1d7a7` (hover/active). Prices on the brown cards use `#f2b866`. Don't use `#78582f` or `#7f725f` for small text.
+- Never remove focus outlines. `:focus-visible` gives a 2px `#f1d7a7` ring everywhere.
+- Every page starts with the skip link (`<a class="skip-link" href="#main">`) and has `<main id="main" tabindex="-1">`.
+- `<head>` sets `html.js`; scroll-reveal hiding only applies under `.js` so content is visible if JS fails. Animations are off under `prefers-reduced-motion`.
+
 ## Design rules
 - Keep the current visual style unless told otherwise: dark background, gold/ivory/coffee palette (`--adyra-*` variables in `style.css`), Cormorant Garamond for display headings, large italic serif headlines, gold accents and thin gold dividers.
 

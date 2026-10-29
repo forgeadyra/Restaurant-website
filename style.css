@@ -38,8 +38,37 @@ html {
 
 /* Keep section titles clear of the sticky header when jumping to an anchor */
 section[id],
-footer[id] {
+footer[id],
+main[id] {
     scroll-margin-top: calc(var(--header-height) + 10px);
+}
+
+/* Keyboard focus: one consistent, high-contrast ring everywhere */
+:focus-visible {
+    outline: 2px solid #f1d7a7;
+    outline-offset: 3px;
+}
+/* The skip link moves focus to <main>; it's not interactive, so no ring */
+#main:focus {
+    outline: none;
+}
+
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -100px;
+    z-index: 2000;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    background: #f1d7a7;
+    color: #120d0a;
+    font-weight: bold;
+    text-decoration: none;
+}
+.skip-link:focus {
+    top: 16px;
 }
 
 :root {
@@ -162,15 +191,17 @@ button,
     filter: saturate(1.06);
 }
 
-.reveal,
-.reveal-section {
+/* Only hide sections for the reveal when JS is running (html.js is set in <head>),
+   so content is never stuck invisible if script.js fails */
+.js .reveal,
+.js .reveal-section {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.reveal.is-visible,
-.reveal-section.is-visible {
+.js .reveal.is-visible,
+.js .reveal-section.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -187,10 +218,16 @@ button,
     }
 
     .hero-animate,
+    .reveal,
     .reveal-section {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
+    }
+
+    .FOOD_ITEMS img:hover,
+    .gallery img:hover {
+        transform: none;
     }
 }
 
@@ -255,11 +292,10 @@ li > a {
 } 
 
 li > a:hover{
-    color: #78582f;
+    color: #f1d7a7;
 }
 
 .reserve-table {
-    padding: 10px ;
     width: 120px;
     margin-right: 100px;
     color: #c0a887;
@@ -267,11 +303,15 @@ li > a:hover{
     background: #d8cfc2;
 }
 .reserve-table > a{
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px;
     color: #000000;
     text-decoration: none;
 }
 .reserve-table > a:hover{
-    color: #78582f;
+    color: #5a3f1c;
 }
 
 .name a{
@@ -366,14 +406,24 @@ li > a:hover{
 
 /* hero */
 #hero{
-    background-image: url("images/hero-dining-room.jpg");
-    background-image: image-set(
-        url("images/hero-dining-room.webp") type("image/webp"),
-        url("images/hero-dining-room.jpg") type("image/jpeg")
-    );
-    height: 600px;
+    /* Dark overlay keeps the hero text readable over any photo */
+    background-image:
+        linear-gradient(rgba(9, 6, 3, 0.6), rgba(9, 6, 3, 0.6)),
+        url("images/hero-dining-room.jpg");
+    background-image:
+        linear-gradient(rgba(9, 6, 3, 0.6), rgba(9, 6, 3, 0.6)),
+        image-set(
+            url("images/hero-dining-room.webp") type("image/webp"),
+            url("images/hero-dining-room.jpg") type("image/jpeg")
+        );
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     /* align-content: center; */
     /* align-items: center; */
     /* display: flex; */
@@ -392,13 +442,13 @@ li > a:hover{
     /* height: 50px; */
     /* align-content: center; */
     /* align-items: center; */
-    color: #000000;
+    color: #f1d7a7;
     /* margin-top: 10px; */
     font-style: italic;
-    font: fallback;
     font-size: larger;
     text-transform: uppercase;
     letter-spacing: 0.45em;
+    margin-bottom: 10px;
 
     text-shadow: 0 4px 20px rgba(0,0,0,.7);
 }
@@ -408,7 +458,7 @@ li > a:hover{
     /* align-items: center; */
     font-family:'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 80px;
+    font-size: clamp(44px, 11vw, 80px);
     color:#f0eeec;
     text-shadow: 0 4px 20px rgba(0,0,0,.7);
 }
@@ -418,7 +468,7 @@ li > a:hover{
     /* align-items: center; */
     font-family:'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 80px;
+    font-size: clamp(44px, 11vw, 80px);
     color:#ffffff;
     text-shadow: 0 4px 20px rgba(0,0,0,.7);
 }
@@ -431,47 +481,46 @@ li > a:hover{
     /* align-items: center; */
     font-family:'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 80px;
+    font-size: clamp(44px, 11vw, 80px);
     color:#ffffff;
 }
 
 .hero4{
-    height: 80px;
-    color: #c07015;
+    color: #e9b872;
     /* margin-top: 10px; */
     font-style: italic;
-    font: fallback;
-    font-size: 30px;
-    margin-top: 20px;
+    font-size: clamp(20px, 4vw, 30px);
+    margin: 20px 0 30px;
 }
 .hero5{
-    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 100px;
 }
 .btn {
     padding: 10px ;
     width: 200px;
-    margin-right: 50px;
     color: #ffffff;
-   
+
     text-decoration: none;
-    border: #cb9221 solid;  
+    border: #cb9221 solid;
 }
 .menu {
     padding: 10px ;
     width: 200px;
-    margin-left: 50px;
     color: #ffffff;
-   
+
     text-decoration: none;
-    border: #cb9221 solid;  
+    border: #cb9221 solid;
 }
 hr {
   border: none;
   height: 2px;
   /* width: 1500px; */
   background-color: #cb9221;
-  margin-left: 150px;
-  margin-right: 200px;
+  margin-left: clamp(16px, 10.4vw, 150px);
+  margin-right: clamp(16px, 13.9vw, 200px);
   margin-bottom: 30px;
   margin-top: 30px;
 }
@@ -482,7 +531,8 @@ hr {
 #about{
     margin-top: 100px;
     display: flex;
-    height: 900px;
+    gap: 40px;
+    padding-bottom: 120px;
 }
 .left{
     /* justify-content: center; */
@@ -490,10 +540,13 @@ hr {
     /* color:#d8cfc2; */
     text-align:left;
     /* text-align: center; */
-    margin-left: 65px;
     color:#c0a887;
-    width: 800px;
     /* display: flex; */
+}
+#about .left{
+    flex: 0 1 800px;
+    min-width: 0;
+    margin-left: clamp(16px, 4.5vw, 65px);
 }
 .story-eyebrow{
     font-size: 1.5em;
@@ -502,12 +555,12 @@ hr {
 .root{
     font-family:'Cormorant Garamond', serif;
     /* font-style: italic; */
-    font-size: 80px;
+    font-size: clamp(40px, 9vw, 80px);
     color:#ffffff;
 }
 .refined{
     font-family:'Cormorant Garamond', serif;
-    font-size: 80px;
+    font-size: clamp(40px, 9vw, 80px);
     color:#ffffff;
 }
 .ref{
@@ -515,14 +568,14 @@ hr {
     font-style: italic;
 }
 .story1{
-    width: 650px;
+    max-width: 650px;
     font-size: larger;
     margin-top: 15px;
     color:#d8cfc2;
     font-family: Arial, Helvetica, sans-serif;
 }
 .story2{
-    width: 650px;
+    max-width: 650px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
     margin-top: 8px;
@@ -531,7 +584,8 @@ hr {
 .fill{
     display: flex;
     justify-content: space-around;
-    width: 700px;
+    gap: 16px;
+    max-width: 700px;
     margin-top: 60px;
 }
 .exp{
@@ -558,20 +612,20 @@ hr {
 .st{
     font-size:medium;
 }
- .right{
-    /* background-image: url("/image/about1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover; */
+#about .right{
     position: relative;
-    display: inline-block;
-} 
+    flex: 0 0 600px;
+}
 .bigger{
+    display: block;
     height: 700px;
     width: 600px;
+    object-fit: cover;
 }
 .smaller{
     height: 350px;
     width: 350px;
+    object-fit: cover;
     position:absolute;
     top: 380px;
     /* left: 10px; */
@@ -594,7 +648,7 @@ hr {
 }
 .MENU{
     font-family:'Cormorant Garamond', serif;
-    font-size: 80px;
+    font-size: clamp(48px, 11vw, 80px);
     color:#ffffff;
 }
 .our{
@@ -605,24 +659,23 @@ hr {
     /* height: 150px; */
     /* background-color: #f0eeec; */
     margin-top: 50px;
-    /* display: flex; */
-    /* justify-content: space-evenly; */
-    /* padding-left: 50px; */
-    /* padding-right: 50px; */
-    /* width: 500px; */
-    /* margin-left: 50px;
-    margin-right: 50px; */
+    margin-bottom: 30px;
+    padding: 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 10px;
 }
 .FOOD_ITEMS{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 80px;
+    gap: clamp(24px, 5vw, 80px);
+    padding: 0 16px;
 }
 
 .btn-types{
-    margin-right: 10px;
-    margin-bottom: 30px;
+    min-height: 44px;
     color: #c0a887;
     /* color:#d8cfc2; */
     background: transparent;
@@ -642,7 +695,7 @@ hr {
     text-decoration: none; */
 /* } */
 .btn-types:hover{
-    color: #78582f;
+    color: #f1d7a7;
 }
 .btn-types.active{
     color: #f1d7a7;
@@ -650,12 +703,13 @@ hr {
 }
 .menu-card {
     background-color: #5f4635;
-    width: 300px;
+    width: min(300px, 100%);
     padding-bottom: 24px;
 }
 .menu-card img{
-    height: 300px;
-    width: 300px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
     object-fit: cover;
     margin-bottom: 14px;
 }
@@ -687,7 +741,7 @@ h3.food_name{
     margin-right:40px;
 }
 .Food_price{
-    color: #d38921;
+    color: #f2b866;
 }
 .about_food{
     color: #ebc798;
@@ -701,7 +755,7 @@ h3.food_name{
 /* Gallery */
 
 .gallery{
-    height: 1000px;
+    padding-bottom: 80px;
 }
 .space{
     text-align: center;
@@ -710,42 +764,63 @@ h3.food_name{
 .room_line{
     text-align: center;
     font-family:'Cormorant Garamond', serif;
-    font-size: 80px;
+    font-size: clamp(44px, 10vw, 80px);
 }
 .yell{
     text-align: center;
     font-family:'Cormorant Garamond', serif;
-    font-size: 70px;
+    font-size: clamp(38px, 9vw, 70px);
     color: #bb8f5d;
 }
 .gal_img{
     margin-top: 20px;
     display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 0 50px;
+}
+.gallery .left,
+.gallery .right{
+    flex: 0 1 600px;
+    min-width: 0;
 }
 
 .left_img {
-    margin-left: 50px;
-    height: 600px;
-    width: 600px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
 }
 .right_img1{
-    margin-left: 50px;
-    height: 400px;
-    width: 600px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
 }
 .right_img2{
-    height: 300px;
-    width: 300px;
-    margin-left: 50px;
+    width: 50%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin-top: 20px;
 }
 
 /* Reservation */
 
 .reservation{
     display: flex;
-    height: 800px;
-    margin-left: 30px;
+    gap: 40px;
+    padding-bottom: 80px;
     /* width: 1000px; */
+}
+.reservation .left{
+    flex: 0 1 600px;
+    min-width: 0;
+    margin-left: clamp(16px, 6.6vw, 95px);
+}
+.reservation .right{
+    flex: 1 1 0;
+    min-width: 0;
 }
 .left{
     text-align: left;
@@ -811,8 +886,35 @@ h3.food_name{
 
 .field{
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
+}
+.field input,
+.field select,
+.field textarea{
+    width: 100%;
+}
+/* Form fields always show the ring when focused (incl. the date picker's
+   day/month/year segments, which don't trigger :focus-visible) */
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    outline: 2px solid #f1d7a7;
+    outline-offset: 2px;
+}
+/* Native controls (date picker icon, select popups) drawn for a dark background */
+.field input,
+.field select{
+    color-scheme: dark;
+}
+.field input::-webkit-calendar-picker-indicator{
+    cursor: pointer;
+    padding: 4px;
+}
+.field input::-webkit-calendar-picker-indicator:focus-visible{
+    outline: 2px solid #f1d7a7;
+    outline-offset: 2px;
 }
 
 .field label{
@@ -831,12 +933,11 @@ h3.food_name{
     color: #fff;
     padding: 18px 22px;
     font-size: 18px;
-    outline: none;
 }
 
 .field input::placeholder,
 .field textarea::placeholder{
-    color: #7f725f;
+    color: #958774;
 }
 
 .field textarea{
@@ -868,7 +969,7 @@ h3.food_name{
 .field-hint{
     margin-top: 8px;
     font-size: 14px;
-    color: #7f725f;
+    color: #958774;
 }
 .field-error{
     margin-top: 8px;
@@ -887,13 +988,13 @@ h3.food_name{
 .field label .optional{
     letter-spacing: 1px;
     text-transform: none;
-    color: #7f725f;
+    color: #958774;
 }
 
 .form-note{
     margin-top: 16px;
     font-size: 14px;
-    color: #7f725f;
+    color: #958774;
 }
 .form-note a{
     color: #b89558;
@@ -966,7 +1067,7 @@ footer
 .footer{
     background: #000;
     color: #c9a96e;
-    padding: 80px 100px 30px;
+    padding: 80px clamp(16px, 7vw, 100px) 30px;
     min-height: 500px;
 }
 
@@ -1009,6 +1110,7 @@ footer
 }
 
 .foot p{
+    letter-spacing: normal;
     margin-top: 30px;
     line-height: 1.8;
     font-size: 18px;
@@ -1130,7 +1232,7 @@ footer
 }
 .legal h1{
     font-family: 'Cormorant Garamond', serif;
-    font-size: 64px;
+    font-size: clamp(40px, 9vw, 64px);
     font-weight: 400;
     color: #fff;
     line-height: 1.1;
@@ -1164,6 +1266,43 @@ footer
 
 /* Responsive */
 
+/* Tablet and below: About and Reservations stack (side-by-side is too cramped under ~1100px) */
+@media (max-width: 1100px){
+    #about,
+    .reservation{
+        flex-direction: column;
+    }
+    #about .left,
+    .reservation .left{
+        flex: none;
+        margin: 0;
+        padding: 0 clamp(16px, 5vw, 65px);
+    }
+    #about .right{
+        flex: none;
+        align-self: center;
+        width: min(600px, calc(100% - 32px));
+        margin-top: 20px;
+    }
+    .bigger{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 6 / 7;
+    }
+    .smaller{
+        width: 45%;
+        height: auto;
+        aspect-ratio: 1;
+        top: auto;
+        right: auto;
+        left: 0;
+        bottom: -60px;
+    }
+    .reservation-form{
+        padding: 20px clamp(16px, 5vw, 65px) 0;
+    }
+}
+
 @media(max-width:1000px){
 
     .upper_foot{
@@ -1179,5 +1318,85 @@ footer
 
     .policy{
         justify-content: center;
+    }
+}
+
+/* Phones and small tablets */
+@media (max-width: 767px){
+    .gal_img{
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 16px;
+    }
+    .gallery .left,
+    .gallery .right{
+        flex: none;
+    }
+    .right_img2{
+        width: 100%;
+    }
+
+    .fill{
+        justify-content: space-between;
+    }
+    .exp, .rating, .SEATS{
+        font-size: 24px;
+    }
+    .yr, .rat, .st{
+        font-size: 13px;
+    }
+
+    .info-box{
+        padding-left: 24px;
+    }
+
+    /* Tap targets: every standalone link at least 44px tall */
+    .info-box a,
+    .contact-details a,
+    .navigate a,
+    .policy a{
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        min-width: 44px;
+    }
+    .contact-details .address{
+        display: flex;
+    }
+    .navigate li{
+        margin-bottom: 0;
+    }
+    .contact-details span,
+    .contact-details .address{
+        margin-bottom: 4px;
+    }
+}
+
+@media (max-width: 600px){
+    :root{
+        --header-height: 72px;
+    }
+    .brand-name{
+        font-size: 1.6em;
+    }
+    .name .tagline{
+        margin-top: 2px;
+        letter-spacing: 3px;
+    }
+    .reserve-table{
+        margin-right: 8px;
+    }
+    .reserve-table > a{
+        padding: 0 12px;
+    }
+
+    .hero0{
+        font-size: 14px;
+        letter-spacing: 0.25em;
+    }
+
+    .row{
+        flex-direction: column;
+        gap: 25px;
     }
 }

@@ -283,6 +283,8 @@ li > a:hover{
     font-style: italic;
     font: fallback;
     font-size: larger;
+    text-transform: uppercase;
+    letter-spacing: 0.45em;
 
     text-shadow: 0 4px 20px rgba(0,0,0,.7);
 }
@@ -398,7 +400,6 @@ hr {
     font-style: italic;
 }
 .story1{
-    height: 100px;
     width: 650px;
     font-size: larger;
     margin-top: 15px;
@@ -406,7 +407,6 @@ hr {
     font-family: Arial, Helvetica, sans-serif;
 }
 .story2{
-    height: 100px;
     width: 650px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
@@ -649,7 +649,6 @@ hr {
 }
 .unforgettable{
     color: #98784c;
-    margin-right: 5px;
 }
 .info-container{
     display: flex;

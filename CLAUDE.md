@@ -15,4 +15,13 @@
 
 ## FACTS
 
-<!-- To be filled in by Aditya. This is the single source of truth for business facts. -->
+- Name: Adyra Fine Dining (short form: Adyra). Use these exact spellings everywhere.
+- Tagline: Where Every Meal Becomes a Memory
+- Established: 2026, Mathura
+- Cuisine: Modern Indian vegetarian fine dining, rooted in Braj food traditions
+- Hours: Tuesday–Sunday. Lunch 12:30 PM–3:30 PM, Dinner 7:00 PM–11:00 PM. Closed Mondays.
+- Address: Adyra Fine Dining, Civil Lines, Mathura, Uttar Pradesh 281001, India
+- Phone: +91 565 000 0000 (fictional, concept site)
+- Email: hello@adyrafinedining.com (only this one)
+- Seats: 48
+- No bar, no alcohol.

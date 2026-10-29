@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>document.documentElement.classList.add("js");</script>
+    <script>
+      document.documentElement.classList.add("js");
+      try {
+        if (localStorage.getItem("adyra-banner-dismissed") === "1") {
+          document.documentElement.classList.add("banner-dismissed");
+        }
+      } catch (e) {}
+    </script>
     <title>Adyra Fine Dining | Vegetarian Fine Dining in Mathura</title>
     <meta
       name="description"
@@ -87,6 +94,15 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <aside class="concept-banner" aria-label="About this website">
+      <p class="concept-banner__text">
+        Concept website designed &amp; developed by
+        <span class="concept-banner__brand">AdyraForge</span>
+      </p>
+      <button class="concept-banner__close" type="button" aria-label="Dismiss this message">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </aside>
     <header>
       <section id="navbar">
         <nav>
@@ -484,12 +500,16 @@
       </div>
       <div class="lower_foot">
         <div class="rights">
-          <p>&copy; 2026 Adyra Fine Dining. All rights reserved.</p>
+          <p>&copy; 2026 Adyra Fine Dining (concept). All rights reserved.</p>
         </div>
         <div class="privacy-link">
           <span class="policy"><a href="privacy.html">Privacy Policy</a></span>
         </div>
       </div>
+      <p class="credit">
+        Concept design by Aditya Singh, Founder of AdyraForge —
+        <span class="credit__cta">want a site like this for your restaurant?</span>
+      </p>
     </footer>
     <script src="script.js" defer></script>
   </body>

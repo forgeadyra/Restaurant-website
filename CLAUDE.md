@@ -14,6 +14,13 @@
 
 - The menu (dishes, prices, descriptions, photos) lives only in the `MENU` array in `script.js`. Edit it there, not in the HTML. Prices are plain numbers in INR, exclusive of GST.
 
+## Portfolio credit
+- Every page has the dismissible banner (`.concept-banner`, right after the skip link): "Concept website designed & developed by AdyraForge". Dismissal is stored in `localStorage` key `adyra-banner-dismissed`; the `<head>` script hides it before first paint on later visits.
+- Every footer ends with `.credit`: "Concept design by Aditya Singh, Founder of AdyraForge — want a site like this for your restaurant?"
+- Copyright reads "© 2026 Adyra Fine Dining (concept). All rights reserved."
+- Keep these quiet: small, muted (`#958774` text, `#c0a887` for the linked words), never larger or brighter than the restaurant's own content.
+- AdyraForge URL: not provided yet. Contact/WhatsApp link: not provided yet. Until they are, "AdyraForge" and "want a site like this…" are plain `<span>`s (styled like links). Don't invent URLs; when provided, turn `<span class="concept-banner__brand">` and `<span class="credit__cta">` into `<a>` with the same class on all three pages.
+
 ## Pages and links
 - Three pages: `index.html`, `privacy.html`, `thank-you.html`. The header and footer are copied into all three. Any change to one must be made in the others.
 - Section ids: `#about`, `#menu`, `#gallery`, `#reservations`, `#contact` (the footer). Links from `privacy.html` use `index.html#…`.

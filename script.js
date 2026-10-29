@@ -29,6 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Portfolio banner: dismiss and remember it (the <head> script hides it on later visits)
+    const bannerClose = document.querySelector('.concept-banner__close');
+    if (bannerClose) {
+        bannerClose.addEventListener('click', () => {
+            document.documentElement.classList.add('banner-dismissed');
+            try {
+                localStorage.setItem('adyra-banner-dismissed', '1');
+            } catch (e) {
+                // storage blocked (private mode etc.): it just stays hidden for this page view
+            }
+            // The button is gone, so give keyboard users a sensible place to continue from
+            const next = [...document.querySelectorAll('header a, header button')]
+                .find((el) => el.offsetParent !== null);
+            if (next) next.focus();
+        });
+    }
+
     // 3. Mobile nav: hamburger toggle, closes on link click and Escape
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.getElementById('primary-nav');

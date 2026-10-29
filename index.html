@@ -24,14 +24,14 @@
 
           <div class="nav-links">
             <ul>
-              <li><a href="#">Menu</a></li>
-              <li><a href="#">Reservations</a></li>
-              <li><a href="#">Gallery</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="#menu">Menu</a></li>
+              <li><a href="#reservation">Reservations</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#about">About</a></li>
             </ul>
           </div>
           <div class="reserve-table">
-            <a href="#">Reserve a table</a>
+            <a href="#reservation">Reserve a table</a>
           </div>
         </nav>
       </section>
@@ -39,22 +39,26 @@
     <main>
       <section id="hero">
         <div class="hero-content">
-          <p class="hero0">E S T A B L I S H E D 2026. M A T H U R A</p>
-          <div class="hero1">Where Every</div>
-          <div class="hero2"><span class="meal">Meal</span> Becomes</div>
-          <div class="hero3">a Memory</div>
-          <p class="hero4">
+          <p class="hero0 hero-animate">
+            E S T A B L I S H E D 2026. M A T H U R A
+          </p>
+          <div class="hero1 hero-line hero-animate">Where Every</div>
+          <div class="hero2 hero-line hero-animate">
+            <span class="meal">Meal</span> Becomes
+          </div>
+          <div class="hero3 hero-line hero-animate">a Memory</div>
+          <p class="hero4 hero-animate">
             Seasonal ingredients.Classic techniques. An atmosphere that invites
             you to linger.
           </p>
-          <div class="hero5">
-            <a href="#" class="btn">RESERVE A TABLE</a>
-            <a href="#" class="menu">VIEW OUR MENU</a>
+          <div class="hero5 hero-animate">
+            <a href="#reservation" class="btn hero-button">RESERVE A TABLE</a>
+            <a href="#menu" class="menu hero-button hero-button-secondary">VIEW OUR MENU</a>
           </div>
         </div>
       </section>
       <hr />
-      <section id="about">
+      <section id="about" class="reveal">
         <div class="left">
           <h2>our story</h2>
           <div class="root">Rooted in Tradition,</div>
@@ -89,7 +93,7 @@
         </div>
       </section>
       <hr />
-      <section class="Menu">
+      <section class="Menu reveal" id="menu">
         <span><h3>SEASONAL SELECTION</h3></span>
         <div class="MENU">Our<span class="our">Menu</span></div>
         <div class="types">
@@ -135,7 +139,7 @@
         </div>
       </section>
       <hr />
-      <section class="gallery">
+      <section class="gallery reveal" id="gallery">
         <div class="space">THE SPACE</div>
         <div class="room_line">A Room Worth</div>
         <div class="yell">Returning To</div>
@@ -147,15 +151,15 @@
             <img src="image\download (3).jpg" alt="asdf" class="right_img1" />
             <img
               src="image\Modern Mansions of Dubai - Bedroom Interior.jpg"
-              alt=""
+              alt="lounge seating"
               class="right_img2"
             />
-            <img src="image\download (1).jpg " class="right_img2" />
+            <img src="image\download (1).jpg " alt="cocktail lounge" class="right_img2" />
           </div>
         </div>
       </section>
       <hr />
-      <section class="reservation">
+      <section class="reservation reveal" id="reservation">
         <div class="left">
           <span>RESERVATION</span>
           <div class="res">JOIN Us For an</div>
@@ -178,7 +182,7 @@
 
               <div class="info-box">
                 <h3>LOCATION</h3>
-                <p>123 Main Street, </p>
+                <p>123 Main Street,</p>
                 <p>Mathura City, India</p>
               </div>
 
@@ -212,27 +216,27 @@
 
               <div class="row three-cols">
                 <div class="field">
-                  <label>DATE</label>
-                  <input type="date" />
+                  <label for="reservation-date">DATE</label>
+                  <input id="reservation-date" type="date" />
                 </div>
 
                 <div class="field">
-                  <label>TIME</label>
-                  <select>
-                    <option>Select</option>
-                    <option>5:00 PM</option>
-                    <option>6:00 PM</option>
-                    <option>7:00 PM</option>
+                  <label for="reservation-time">TIME</label>
+                  <select id="reservation-time" name="reservation-time">
+                    <option value="">Select</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
                   </select>
                 </div>
 
                 <div class="field">
-                  <label>GUESTS</label>
-                  <select>
-                    <option>1 Guest</option>
-                    <option>2 Guests</option>
-                    <option>4 Guests</option>
-                    <option>6 Guests</option>
+                  <label for="reservation-guests">GUESTS</label>
+                  <select id="reservation-guests" name="reservation-guests">
+                    <option value="1 Guest">1 Guest</option>
+                    <option value="2 Guests">2 Guests</option>
+                    <option value="4 Guests">4 Guests</option>
+                    <option value="6 Guests">6 Guests</option>
                   </select>
                 </div>
               </div>
@@ -253,7 +257,7 @@
     <footer class="footer">
       <div class="upper_foot">
         <div class="foot">
-          <div class=" foot_name">
+          <div class="foot_name">
             Adyra <span class="tagline">fine dining</span>
             <span>
               <p>
@@ -305,5 +309,6 @@
         </div>
       </div>
     </footer>
+    <script src="script.js" defer></script>
   </body>
 </html>

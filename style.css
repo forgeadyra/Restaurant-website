@@ -10,6 +10,166 @@ body{
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --adyra-gold: #c8ab71;
+    --adyra-gold-deep: #9d7d49;
+    --adyra-ivory: #f0eeec;
+    --adyra-coffee: #120d0a;
+    --adyra-panel: rgba(36, 22, 15, 0.85);
+}
+
+@keyframes heroLoadIn {
+    0% {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-animate {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: heroLoadIn 0.68s ease-out forwards;
+}
+
+.hero0 {
+    animation-delay: 0ms;
+}
+
+.hero1 {
+    animation-delay: 120ms;
+}
+
+.hero2 {
+    animation-delay: 240ms;
+}
+
+.hero3 {
+    animation-delay: 360ms;
+}
+
+.hero4 {
+    animation-delay: 500ms;
+}
+
+.hero5 {
+    animation-delay: 620ms;
+}
+
+.hero-button,
+.nav-links a,
+.reserve-table a,
+.btn-types,
+.FOOD_ITEMS img,
+.gallery img,
+button,
+.nav-links a,
+.navigate a,
+.social-media a {
+    transition: transform 0.35s ease, opacity 0.35s ease, color 0.35s ease, border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.reserve-table a:hover,
+.reserve-table a:focus-visible,
+.hero-button:hover,
+.hero-button:focus-visible,
+.btn-types:hover,
+.btn-types:focus-visible,
+.navigate a:hover,
+.navigate a:focus-visible,
+.social-media a:hover,
+.social-media a:focus-visible {
+    transform: translateY(-1px);
+}
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 14px 26px;
+    border: 1px solid rgba(200, 171, 113, 0.75);
+    background: rgba(11, 8, 6, 0.2);
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.hero-button:hover,
+.hero-button:focus-visible {
+    border-color: rgba(200, 171, 113, 1);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+.hero-button-secondary {
+    background: transparent;
+}
+
+.btn-types {
+    padding: 10px 14px;
+    border-bottom: 1px solid transparent;
+}
+
+.btn-types:hover,
+.btn-types:focus-visible {
+    color: #f1d7a7;
+    border-color: rgba(200, 171, 113, 0.7);
+}
+
+.FOOD_ITEMS img,
+.gallery img {
+    display: block;
+    transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
+}
+
+.FOOD_ITEMS img:hover,
+.gallery img:hover,
+.FOOD_ITEMS img:focus-visible,
+.gallery img:focus-visible {
+    transform: scale(1.03);
+    filter: saturate(1.06);
+}
+
+.reveal,
+.reveal-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible,
+.reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hero-animate,
+    .reveal-section {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
 }
 
 /* Header */
@@ -23,6 +183,7 @@ header{
     background:#120d0a;
     top: 0;
     transition: 0.4s ease;
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     z-index: 1000;

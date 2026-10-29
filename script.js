@@ -29,7 +29,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Menu: render dishes from MENU and filter by category tab
+    // 3. Mobile nav: hamburger toggle, closes on link click and Escape
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('primary-nav');
+
+    if (navToggle && navLinks) {
+        const setNavOpen = (open) => {
+            navToggle.setAttribute('aria-expanded', String(open));
+            navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+            navLinks.classList.toggle('is-open', open);
+        };
+
+        navToggle.addEventListener('click', () => {
+            setNavOpen(navToggle.getAttribute('aria-expanded') !== 'true');
+        });
+
+        navLinks.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => setNavOpen(false));
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+                setNavOpen(false);
+                navToggle.focus();
+            }
+        });
+    }
+
+    // 4. Highlight the nav link for the section currently in view
+    const sectionLinks = new Map();
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach((link) => {
+        const section = document.querySelector(link.getAttribute('href'));
+        if (section) sectionLinks.set(section, link);
+    });
+
+    if (sectionLinks.size > 0) {
+        const setActiveLink = (activeLink) => {
+            sectionLinks.forEach((link) => {
+                const isActive = link === activeLink;
+                link.classList.toggle('active', isActive);
+                if (isActive) link.setAttribute('aria-current', 'true');
+                else link.removeAttribute('aria-current');
+            });
+        };
+
+        // A section counts as "current" when it crosses the middle band of the viewport
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) setActiveLink(sectionLinks.get(entry.target));
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        sectionLinks.forEach((link, section) => sectionObserver.observe(section));
+
+        // Clear the highlight when back at the hero
+        const hero = document.getElementById('hero');
+        if (hero) {
+            new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) setActiveLink(null);
+            }, { rootMargin: '-45% 0px -50% 0px' }).observe(hero);
+        }
+    }
+
+    // 5. Menu: render dishes from MENU and filter by category tab
     const menuGrid = document.querySelector('.FOOD_ITEMS');
     const categoryButtons = document.querySelectorAll('.btn-types');
 

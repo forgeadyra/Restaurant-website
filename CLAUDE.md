@@ -12,6 +12,12 @@
 
 - The menu (dishes, prices, descriptions, photos) lives only in the `MENU` array in `script.js`. Edit it there, not in the HTML. Prices are plain numbers in INR, exclusive of GST.
 
+## Pages and links
+- Two pages: `index.html` and `privacy.html`. The header and footer are copied into both. Any change to one must be made in the other.
+- Section ids: `#about`, `#menu`, `#gallery`, `#reservations`, `#contact` (the footer). Links from `privacy.html` use `index.html#…`.
+- Never use `href="#"`. No social media links (there are no accounts). Phone uses `tel:`, email uses `mailto:`, address links to Google Maps.
+- The reservation form is a Netlify Form (`name="reservation"`). If you add a field, give it a `name` and update the "What we collect" list in `privacy.html`.
+
 ## Design rules
 - Keep the current visual style unless told otherwise: dark background, gold/ivory/coffee palette (`--adyra-*` variables in `style.css`), Cormorant Garamond for display headings, large italic serif headlines, gold accents and thin gold dividers.
 

@@ -17,7 +17,14 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Keep section titles clear of the sticky header when jumping to an anchor */
+section[id],
+footer[id] {
+    scroll-margin-top: calc(var(--header-height) + 10px);
+}
+
 :root {
+    --header-height: 100px;
     --adyra-gold: #c8ab71;
     --adyra-gold-deep: #9d7d49;
     --adyra-ivory: #f0eeec;
@@ -73,9 +80,7 @@ html {
 .FOOD_ITEMS img,
 .gallery img,
 button,
-.nav-links a,
-.navigate a,
-.social-media a {
+.navigate a {
     transition: transform 0.35s ease, opacity 0.35s ease, color 0.35s ease, border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -88,9 +93,7 @@ button,
 .btn-types:hover,
 .btn-types:focus-visible,
 .navigate a:hover,
-.navigate a:focus-visible,
-.social-media a:hover,
-.social-media a:focus-visible {
+.navigate a:focus-visible {
     transform: translateY(-1px);
 }
 
@@ -190,7 +193,8 @@ header{
 }
 nav{
     padding: 0;
-    height: 100px; 
+    height: var(--header-height);
+    position: relative;
     display: flex;
     background-color: rgba(36, 22, 15, 0.85);
     /* display: flex; */
@@ -249,6 +253,93 @@ li > a:hover{
 }
 .reserve-table > a:hover{
     color: #78582f;
+}
+
+.name a{
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Section currently in view (set by script.js) */
+.nav-links a.active{
+    color: #f1d7a7;
+    border-bottom: 1px solid rgba(200, 171, 113, 0.7);
+}
+
+/* Hamburger: hidden on desktop */
+.nav-toggle{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    margin-right: 16px;
+    background: transparent;
+    border: 1px solid rgba(200, 171, 113, 0.5);
+    cursor: pointer;
+}
+.nav-toggle-bar{
+    display: block;
+    height: 1px;
+    background: #c0a887;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){
+    opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 900px){
+    .name{
+        width: auto;
+        margin-left: 16px;
+        padding-left: 0;
+    }
+    .reserve-table{
+        width: auto;
+        margin-right: 12px;
+        margin-left: auto;
+        white-space: nowrap;
+    }
+    .nav-toggle{
+        display: flex;
+        order: 3;
+    }
+    /* Closed: removed from layout so links can't be tabbed to */
+    .nav-links{
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #120d0a;
+        border-bottom: 1px solid rgba(200, 171, 113, 0.3);
+    }
+    .nav-links.is-open{
+        display: block;
+    }
+    .nav-links > ul{
+        flex-direction: column;
+        padding: 8px 0;
+    }
+    .nav-links li{
+        margin: 0;
+    }
+    .nav-links a{
+        display: block;
+        padding: 14px 24px;
+    }
+    .nav-links a.active{
+        border-bottom: none;
+        border-left: 1px solid rgba(200, 171, 113, 0.7);
+    }
 }
 
 /* main */
@@ -731,7 +822,7 @@ hr {
     margin-bottom: 25px;
 }
 
-button{
+.reservation-form button{
     width: 100%;
     height: 65px;
     border: none;
@@ -744,8 +835,26 @@ button{
     transition: .3s;
 }
 
-button:hover{
+.reservation-form button:hover{
     background: #d9bb7e;
+}
+
+.form-note{
+    margin-top: 16px;
+    font-size: 14px;
+    color: #7f725f;
+}
+.form-note a{
+    color: #b89558;
+}
+
+.info-box a{
+    color: inherit;
+    text-decoration: none;
+}
+.info-box a:hover p,
+.info-box a:hover{
+    color: #d6b06f;
 }
 
 input:focus,
@@ -826,8 +935,7 @@ footer
 .foot,
 .timeline,
 .contact-details,
-.navigate,
-.social-media{
+.navigate{
     flex: 1;
 }
 
@@ -860,8 +968,7 @@ footer
 
 .timeline h3,
 .contact-details h3,
-.navigate h3,
-.social-media h3{
+.navigate h3{
     text-transform: uppercase;
     letter-spacing: 4px;
     font-size: 14px;
@@ -884,7 +991,8 @@ footer
 
 /* Contact */
 
-.contact-details span{
+.contact-details span,
+.contact-details .address{
     display: block;
     margin-bottom: 12px;
 }
@@ -894,6 +1002,14 @@ footer
 .email{
     color: #fff;
     line-height: 1.8;
+}
+
+.contact-details a{
+    color: #fff;
+    text-decoration: none;
+}
+.contact-details a:hover{
+    color: #d6b06f;
 }
 
 /* Navigation */
@@ -907,23 +1023,14 @@ footer
     margin-bottom: 22px;
 }
 
-.navigate a,
-.social-media a{
+.navigate a{
     text-decoration: none;
     color: #9f8a63;
     transition: .3s;
 }
 
-.navigate a:hover,
-.social-media a:hover{
+.navigate a:hover{
     color: #d6b06f;
-}
-
-/* Social */
-
-.social-media a{
-    display: block;
-    margin-bottom: 18px;
 }
 
 /* Bottom Section */
@@ -953,6 +1060,55 @@ footer
 
 .policy a:hover{
     color: #d6b06f;
+}
+
+/* Privacy page */
+
+.legal{
+    max-width: 760px;
+    margin: 80px auto 100px;
+    padding: 0 24px;
+    color: #d8cfc2;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.8;
+}
+.legal .eyebrow{
+    color: #c0a887;
+    letter-spacing: 4px;
+    font-size: 14px;
+}
+.legal h1{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.1;
+    margin: 10px 0 30px;
+}
+.legal h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #c0a887;
+    margin: 40px 0 10px;
+}
+.legal p,
+.legal ul{
+    margin-bottom: 14px;
+}
+.legal ul{
+    padding-left: 20px;
+}
+.legal li{
+    margin: 0 0 6px;
+}
+.legal a{
+    color: #c8ab71;
+}
+.legal .notice{
+    border-left: 1px solid #b9874a;
+    padding-left: 20px;
+    color: #ebc798;
 }
 
 /* Responsive */

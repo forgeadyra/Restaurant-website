@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adyra-restaurant.netlify.app/sitemap.xml

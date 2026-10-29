@@ -17,6 +17,25 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Headings that wrap existing display lines: let the line classes do the styling */
+.heading-reset{
+    font-size: inherit;
+    font-weight: inherit;
+}
+.hero1, .hero2, .hero3,
+.root, .refined,
+.room_line, .yell,
+.res, .eve{
+    display: block;
+}
+
+/* Logo text (was an h1; the page heading is now the hero title) */
+.brand-name{
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+
 /* Keep section titles clear of the sticky header when jumping to an anchor */
 section[id],
 footer[id] {
@@ -476,8 +495,9 @@ hr {
     width: 800px;
     /* display: flex; */
 }
-.left > h3{
-    font-style: bold;
+.story-eyebrow{
+    font-size: 1.5em;
+    font-weight: bold;
 }
 .root{
     font-family:'Cormorant Garamond', serif;
@@ -566,9 +586,11 @@ hr {
     text-align: center;
     min-height: 700px;
 }
-.Menu >span> h3{
+.menu-eyebrow{
     color: #c0a887;
     margin-top: 70px;
+    font-size: 1.17em;
+    font-weight: bold;
 }
 .MENU{
     font-family:'Cormorant Garamond', serif;
@@ -644,6 +666,10 @@ hr {
     justify-content: center;
     min-height: 180px;
     padding: 30px 20px;
+}
+h3.food_name{
+    display: inline;
+    font-weight: normal;
 }
 .menu-card--text .food_name{
     margin-right: 10px;
@@ -839,6 +865,31 @@ hr {
     background: #d9bb7e;
 }
 
+.field-hint{
+    margin-top: 8px;
+    font-size: 14px;
+    color: #7f725f;
+}
+.field-error{
+    margin-top: 8px;
+    font-size: 14px;
+    color: #f08a6c;
+}
+.field-error:empty{
+    display: none;
+}
+.field-error a{
+    color: inherit;
+}
+.field [aria-invalid="true"]{
+    border-color: #f08a6c;
+}
+.field label .optional{
+    letter-spacing: 1px;
+    text-transform: none;
+    color: #7f725f;
+}
+
 .form-note{
     margin-top: 16px;
     font-size: 14px;
@@ -966,9 +1017,9 @@ footer
 
 /* Headings */
 
-.timeline h3,
-.contact-details h3,
-.navigate h3{
+.timeline h2,
+.contact-details h2,
+.navigate h2{
     text-transform: uppercase;
     letter-spacing: 4px;
     font-size: 14px;

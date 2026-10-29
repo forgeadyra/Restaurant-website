@@ -91,7 +91,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 5. Menu: render dishes from MENU and filter by category tab
+    // 5. Reservation form: inline validation before Netlify handles the POST.
+    // Without JS the browser's own required/pattern checks still apply.
+    const reservationForm = document.querySelector('.reservation-form-el');
+    if (reservationForm) {
+        reservationForm.noValidate = true;
+
+        const todayISO = toISODate(new Date());
+        reservationForm.querySelector('#reservation-date').min = todayISO;
+
+        const fields = [...reservationForm.querySelectorAll('[name]')]
+            .filter((field) => RESERVATION_RULES[field.name]);
+
+        const validateField = (field) => {
+            const message = RESERVATION_RULES[field.name](field.value.trim(), field, todayISO);
+            document.getElementById(`${field.id}-error`).innerHTML = message;
+            if (message) field.setAttribute('aria-invalid', 'true');
+            else field.removeAttribute('aria-invalid');
+            return !message;
+        };
+
+        fields.forEach((field) => {
+            // Check on leaving a field; once flagged, re-check as the user fixes it
+            field.addEventListener('blur', () => validateField(field));
+            field.addEventListener('input', () => {
+                if (field.hasAttribute('aria-invalid')) validateField(field);
+            });
+            // Selects and the date picker give instant feedback (e.g. Mondays, 7+ guests)
+            if (field.tagName === 'SELECT' || field.type === 'date') {
+                field.addEventListener('change', () => validateField(field));
+            }
+        });
+
+        reservationForm.addEventListener('submit', (event) => {
+            const invalid = fields.filter((field) => !validateField(field));
+            if (invalid.length > 0) {
+                event.preventDefault();
+                invalid[0].focus();
+            }
+        });
+    }
+
+    // 6. Menu: render dishes from MENU and filter by category tab
     const menuGrid = document.querySelector('.FOOD_ITEMS');
     const categoryButtons = document.querySelectorAll('.btn-types');
 
@@ -119,6 +160,53 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryButtons[0].click();
     }
 });
+
+// Reservation form rules, keyed by field name. Each returns an error message, or '' if valid.
+const PHONE_PATTERN = /^(\+91[\s-]?|0)?[6-9]\d{4}[\s-]?\d{5}$/;
+
+const RESERVATION_RULES = {
+    name: (value) =>
+        value.length < 2 ? 'Please enter your full name.' : '',
+
+    email: (value, field) => {
+        if (!value) return 'Please enter your email address.';
+        if (field.validity.typeMismatch) return 'Please enter a valid email address, like name@example.com.';
+        return '';
+    },
+
+    phone: (value) => {
+        if (!value) return 'Please enter a phone number so we can confirm your table.';
+        if (!PHONE_PATTERN.test(value)) return 'Please enter a 10-digit Indian mobile number, e.g. +91 9XXXX XXXXX.';
+        return '';
+    },
+
+    'reservation-date': (value, field, todayISO) => {
+        if (!value) return 'Please choose a date.';
+        if (value < todayISO) return 'Please choose today or a later date.';
+        const [year, month, day] = value.split('-').map(Number);
+        if (new Date(year, month - 1, day).getDay() === 1) {
+            return 'We’re closed on Mondays. Please choose a day from Tuesday to Sunday.';
+        }
+        return '';
+    },
+
+    'reservation-time': (value) =>
+        value ? '' : 'Please choose a lunch or dinner time.',
+
+    'reservation-guests': (value) => {
+        if (!value) return 'Please choose the number of guests.';
+        if (value === '7+') {
+            return 'For 7 or more guests, please call us on <a href="tel:+915650000000">+91 565 000 0000</a> and we’ll arrange your table.';
+        }
+        return '';
+    }
+};
+
+// YYYY-MM-DD in the visitor's local time zone (toISOString would use UTC)
+function toISODate(date) {
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
 
 // Menu data. To add a dish, add an object here. `image` is optional:
 // leave it out and the dish renders as a text-only card.
@@ -164,7 +252,7 @@ function dishCard(dish) {
         <article class="menu-card${dish.image ? '' : ' menu-card--text'}">
             ${picture}
             <div>
-                <span class="food_name">${dish.name}</span>
+                <h3 class="food_name">${dish.name}</h3>
                 <span class="Food_price">${formatPrice(dish.price)}</span>
             </div>
             <span class="about_food">${dish.description}</span>

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "images": "node scripts/convert-images.mjs"
+    "images": "node scripts/convert-images.mjs",
+    "brand-assets": "node scripts/make-brand-assets.mjs"
   },
   "devDependencies": {
     "sharp": "^0.35.5"

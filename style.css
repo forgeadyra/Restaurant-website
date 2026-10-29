@@ -473,7 +473,7 @@ hr {
 /* menu */
 .Menu{
     text-align: center;
-    height: 700px;
+    min-height: 700px;
 }
 .Menu >span> h3{
     color: #c0a887;
@@ -502,7 +502,9 @@ hr {
 }
 .FOOD_ITEMS{
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 80px;
 }
 
 .btn-types{
@@ -529,41 +531,35 @@ hr {
 .btn-types:hover{
     color: #78582f;
 }
-.IMG1 {
-    background-color: #5f4635;
-    height: 400px;
-    width: 300px;
-    margin-left: 150px;
+.btn-types.active{
+    color: #f1d7a7;
+    border-bottom: 1px solid rgba(200, 171, 113, 0.7);
 }
-
-.IMG1 img{
+.menu-card {
+    background-color: #5f4635;
+    width: 300px;
+    padding-bottom: 24px;
+}
+.menu-card img{
     height: 300px;
     width: 300px;
-    /* margin-left: 150px; */
+    object-fit: cover;
+    margin-bottom: 14px;
 }
-
-.IMG2 {
-    background-color: #5f4635;
-    height: 400px;
-    width: 300px;
-    margin-left: 80px;
+/* Dishes without a photo: no empty image box, text sits centred in the card */
+.menu-card--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 180px;
+    padding: 30px 20px;
 }
-.IMG2 img{
-    height: 300px;
-    width: 300px;
-    /* margin-left: 100px; */
+.menu-card--text .food_name{
+    margin-right: 10px;
 }
-.IMG3 {
-    background-color: #5f4635;
-    height: 400px;
-    width: 300px;
-    margin-left: 80px;
-}
-
-.IMG3 img{
-    height: 300px;
-    width: 300px;
-    /* margin-left: 100px; */
+.about_food{
+    display: block;
+    padding: 8px 20px 0;
 }
 .food_name{
     /* background-color: #c07015; */

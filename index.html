@@ -109,49 +109,17 @@
         <span><h3>SEASONAL SELECTION</h3></span>
         <div class="MENU">Our <span class="our">Menu</span></div>
         <div class="types">
-          <input type="button" value="STARTERS" class="btn-types" />
-          <input type="button" value="MAINS" class="btn-types" />
-          <input type="button" value="DESSERTS" class="btn-types" />
+          <input type="button" value="STARTERS" class="btn-types" data-category="starters" />
+          <input type="button" value="MAINS" class="btn-types" data-category="mains" />
+          <input type="button" value="DESSERTS" class="btn-types" data-category="desserts" />
+          <input type="button" value="BEVERAGES" class="btn-types" data-category="beverages" />
         </div>
-        <div class="FOOD_ITEMS">
-          <div class="IMG1">
-            <picture>
-              <source srcset="images/thandai-kulfi.webp" type="image/webp" />
-              <img src="images/thandai-kulfi.jpg" alt="Three sticks of thandai kulfi on a dark plate, scattered with pistachio and almond" width="720" height="1107" loading="lazy" />
-            </picture>
-            <span class="food_name">Thandai Kulfi</span>
-            <span class="Food_price">$18</span><br />
-            <span class="about_food">
-              Slow-set kulfi with fennel, cardamom, almond and rose.
-            </span>
-          </div>
-          <div class="IMG2">
-            <picture>
-              <source srcset="images/mango-shake.webp" type="image/webp" />
-              <img src="images/mango-shake.jpg" alt="Two glasses of mango shake topped with cream and pistachio" width="736" height="1104" loading="lazy" />
-            </picture>
-            <span class="food_name">Mango Shake</span>
-            <span class="Food_price">$16</span><br />
-            <span class="about_food">
-              Ripe mango and chilled milk, finished with cream and pistachio.
-            </span>
-          </div>
-          <div class="IMG3">
-            <picture>
-              <source srcset="images/chocolate-dessert.webp" type="image/webp" />
-              <img src="images/chocolate-dessert.jpg" alt="Chocolate dessert with vanilla ice cream and warm chocolate sauce" width="736" height="1288" loading="lazy" />
-            </picture>
-            <span class="food_name">Chocolate Bavarois</span>
-            <span class="Food_price">$20</span><br />
-            <span class="about_food">
-              Dark chocolate and vanilla, with warm chocolate sauce poured at
-              the table.
-            </span>
-          </div>
-        </div>
+        <!-- Filled from the MENU array in script.js -->
+        <div class="FOOD_ITEMS" aria-live="polite"></div>
         <div class="menu_info">
-          Menu changes seasonally. Dietary accommodations available upon
-          request.
+          Menu changes seasonally. Dietary accommodations available on request.
+          <br />
+          All dishes are vegetarian. Prices exclusive of GST.
         </div>
       </section>
       <hr />

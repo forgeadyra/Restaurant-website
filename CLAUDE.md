@@ -10,6 +10,8 @@
 - Never invent awards, ratings, or reviews (e.g. no Michelin stars, star ratings, testimonials).
 - All business facts (hours, address, phone, email, founding year, menu items, prices, seating, etc.) must come from the FACTS section below. Never contradict them. If a fact is needed and isn't listed, ask instead of making one up.
 
+- The menu (dishes, prices, descriptions, photos) lives only in the `MENU` array in `script.js`. Edit it there, not in the HTML. Prices are plain numbers in INR, exclusive of GST.
+
 ## Design rules
 - Keep the current visual style unless told otherwise: dark background, gold/ivory/coffee palette (`--adyra-*` variables in `style.css`), Cormorant Garamond for display headings, large italic serif headlines, gold accents and thin gold dividers.
 

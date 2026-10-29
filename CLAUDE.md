@@ -2,7 +2,9 @@
 
 ## What this is
 - "Adyra Fine Dining" is a **concept** restaurant website built by AdyraForge (founder: Aditya Singh) as a portfolio piece. It is **not a real restaurant**.
-- Static site: HTML / CSS / vanilla JS. No build step, no frameworks. Deployed on Netlify.
+- Static site: HTML / CSS / vanilla JS. No frameworks. Deployed on Netlify.
+- The source files are the site; edit them directly and open `index.html` to preview. The only build step is `scripts/build.mjs` (run by Netlify, or `npm run build`): it copies the public files into `dist/` and adds `?v=<hash>` to CSS/JS/image/font URLs. Never edit `dist/` (it's regenerated and git-ignored).
+- New public files (a page, an icon, etc.) must be added to the `PUBLIC` list in `scripts/build.mjs`, or they won't be deployed.
 - Vegetarian fine dining in Mathura, India. Prices in INR (₹). No alcohol, no bar.
 
 ## Content rules
@@ -37,12 +39,20 @@
 - `<head>` sets `html.js`; scroll-reveal hiding only applies under `.js` so content is visible if JS fails. Animations are off under `prefers-reduced-motion`.
 
 ## Design rules
-- Keep the current visual style unless told otherwise: dark background, gold/ivory/coffee palette (`--adyra-*` variables in `style.css`), Cormorant Garamond for display headings, large italic serif headlines, gold accents and thin gold dividers.
+- Keep the current visual style unless told otherwise: dark background (`#090603`, header `#120d0a`), gold accents (`#c8ab71`, `#c0a887`, `#cb9221`), ivory headings, Cormorant Garamond for display headings, large italic serif headlines and thin gold dividers.
+
+## Performance
+- Target: Lighthouse mobile 90+ on all four categories (last measured: 99/100/100/100 on the homepage).
+- Fonts are self-hosted in `fonts/` (Cormorant Garamond, Latin subset: one variable upright file for 400–700, one italic 400). Don't add Google Fonts links or other font weights; if a new weight/style is needed, add its woff2 and `@font-face`.
+- `index.html` preloads the hero WebP and the italic font (the hero headline). Other pages preload the upright font. Keep preloads in sync if the hero image or fonts change.
+- No third-party requests on page load. `script.js` stays `defer`.
+- `netlify.toml` caches `/images/*`, `/fonts/*`, `*.css`, `*.js` for a year (`immutable`). That's only safe because the build fingerprints their URLs, so always deploy through the build.
 
 ## Images
 - All images live in `images/`, named in lowercase-kebab-case (no spaces or parentheses). Paths use forward slashes.
 - After adding or replacing a JPG/PNG, run `npm install` (once) then `npm run images` to generate the WebP versions (max 1600px wide, quality 80). Commit both files.
-- Markup: `<picture>` with a WebP `<source>` and a JPG `<img>` fallback. Every `<img>` below the hero gets `loading="lazy"` and `width`/`height` set to the file's real pixel size. The hero is a CSS background using `image-set()`.
+- WebPs listed in `CROP` in `scripts/convert-images.mjs` are centre-cropped to the aspect ratio CSS displays them at (the JPGs stay uncropped as sources). If an image's `aspect-ratio` changes in `style.css`, update `CROP` too.
+- Markup: `<picture>` with a WebP `<source>` and a JPG `<img>` fallback. Every `<img>` below the hero gets `loading="lazy"` and `width`/`height` set to the **WebP's** pixel size (printed by `npm run images`). The hero is a CSS background using `image-set()`.
 - Alt text describes what's actually in the photo; purely decorative images get `alt=""`.
 - Only use free-license images (Unsplash, Pexels). No photos showing bars, bottles or alcohol.
 

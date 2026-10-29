@@ -1,11 +1,26 @@
-body{
-    margin: 0;
-    padding: 0;
-    color: #ffffff;
-    /* font-family: 'Poppins', sans-serif; */
-    background-color: rgb(14, 14, 14);
-    
+/* Self-hosted Cormorant Garamond (SIL OFL, see fonts/OFL.txt), Latin subset only.
+   The upright file is variable and covers 400 and 700. */
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("fonts/cormorant-garamond-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("fonts/cormorant-garamond-italic-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
+body{
+    color: #ffffff;
+    background: #090603;
+    font-family: serif;
 }
 * {
     margin: 0;
@@ -29,7 +44,6 @@ html {
     display: block;
 }
 
-/* Logo text (was an h1; the page heading is now the hero title) */
 .brand-name{
     display: block;
     font-size: 2em;
@@ -48,7 +62,6 @@ main[id] {
     outline: 2px solid #f1d7a7;
     outline-offset: 3px;
 }
-/* The skip link moves focus to <main>; it's not interactive, so no ring */
 #main:focus {
     outline: none;
 }
@@ -73,11 +86,6 @@ main[id] {
 
 :root {
     --header-height: 100px;
-    --adyra-gold: #c8ab71;
-    --adyra-gold-deep: #9d7d49;
-    --adyra-ivory: #f0eeec;
-    --adyra-coffee: #120d0a;
-    --adyra-panel: rgba(36, 22, 15, 0.85);
 }
 
 @keyframes heroLoadIn {
@@ -166,15 +174,9 @@ button,
     background: transparent;
 }
 
-.btn-types {
-    padding: 10px 14px;
-    border-bottom: 1px solid transparent;
-}
-
 .btn-types:hover,
 .btn-types:focus-visible {
     color: #f1d7a7;
-    border-color: rgba(200, 171, 113, 0.7);
 }
 
 .FOOD_ITEMS img,
@@ -184,24 +186,20 @@ button,
 }
 
 .FOOD_ITEMS img:hover,
-.gallery img:hover,
-.FOOD_ITEMS img:focus-visible,
-.gallery img:focus-visible {
+.gallery img:hover {
     transform: scale(1.03);
     filter: saturate(1.06);
 }
 
 /* Only hide sections for the reveal when JS is running (html.js is set in <head>),
    so content is never stuck invisible if script.js fails */
-.js .reveal,
-.js .reveal-section {
+.js .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.js .reveal.is-visible,
-.js .reveal-section.is-visible {
+.js .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -218,8 +216,7 @@ button,
     }
 
     .hero-animate,
-    .reveal,
-    .reveal-section {
+    .reveal {
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
@@ -234,62 +231,44 @@ button,
 /* Header */
 
 header{
-    padding: 0;
-    margin: 0;
-    /* background-color: rgb(46, 46, 121); */
     position: sticky;
-    background: transparent;
     background:#120d0a;
     top: 0;
-    transition: 0.4s ease;
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
     z-index: 1000;
 }
 nav{
-    padding: 0;
     height: var(--header-height);
     position: relative;
     display: flex;
     background-color: rgba(36, 22, 15, 0.85);
-    /* display: flex; */
     align-items: center;
     justify-content: space-between;
     width:100%;
-    
-} 
+}
 
 .name{
-    width: 300px; 
+    width: 300px;
     margin-left: 25px;
     padding-left: 25px;
-    /* color: aqua; */
-    /* background-color: black; */
     color:#d8cfc2;
     font-size:18px;
     font-family: 'Cormorant Garamond', serif;
     font-weight:bold;
 }
-.tagline{
-    padding-left: 1px;
-    color:#c0a887;
-}
 
 .nav-links>ul{
     list-style: none;
     display: flex;
-
 }
 li{
    margin: 20px;
-   /* color: #c0a887;  */
 }
 
 li > a {
     color: #c0a887;
     text-decoration: none;
-} 
+}
 
 li > a:hover{
     color: #f1d7a7;
@@ -299,7 +278,6 @@ li > a:hover{
     width: 120px;
     margin-right: 100px;
     color: #c0a887;
-    /* color:#d8cfc2; */
     background: #d8cfc2;
 }
 .reserve-table > a{
@@ -401,9 +379,6 @@ li > a:hover{
     }
 }
 
-/* main */
-
-
 /* hero */
 #hero{
     /* Dark overlay keeps the hero text readable over any photo */
@@ -424,70 +399,36 @@ li > a:hover{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    /* align-content: center; */
-    /* align-items: center; */
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 .hero-content{
-    /* justify-content: space-around; */
-    /* align-items: center; */
     text-align: center;
-    /* color: white; */
     text-shadow: 0 4px 20px rgba(0,0,0,.7);
-
 }
 .hero0{
-    /* height: 50px; */
-    /* align-content: center; */
-    /* align-items: center; */
     color: #f1d7a7;
-    /* margin-top: 10px; */
     font-style: italic;
     font-size: larger;
     text-transform: uppercase;
     letter-spacing: 0.45em;
     margin-bottom: 10px;
-
-    text-shadow: 0 4px 20px rgba(0,0,0,.7);
 }
-.hero1{
-    /* height: 150px; */
-    align-content: center;
-    /* align-items: center; */
-    font-family:'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: clamp(44px, 11vw, 80px);
-    color:#f0eeec;
-    text-shadow: 0 4px 20px rgba(0,0,0,.7);
-}
-.hero2{
-    /* height: 150px; */
-    align-content: center;
-    /* align-items: center; */
+.hero1,
+.hero2,
+.hero3{
     font-family:'Cormorant Garamond', serif;
     font-style: italic;
     font-size: clamp(44px, 11vw, 80px);
     color:#ffffff;
-    text-shadow: 0 4px 20px rgba(0,0,0,.7);
+}
+.hero1{
+    color:#f0eeec;
 }
 .meal{
     color: #d38921;
 }
-.hero3{
-    /* height: 150px; */
-    align-content: center;
-    /* align-items: center; */
-    font-family:'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: clamp(44px, 11vw, 80px);
-    color:#ffffff;
-}
 
 .hero4{
     color: #e9b872;
-    /* margin-top: 10px; */
     font-style: italic;
     font-size: clamp(20px, 4vw, 30px);
     margin: 20px 0 30px;
@@ -498,33 +439,23 @@ li > a:hover{
     justify-content: center;
     gap: 20px 100px;
 }
-.btn {
-    padding: 10px ;
-    width: 200px;
-    color: #ffffff;
-
-    text-decoration: none;
-    border: #cb9221 solid;
-}
+.btn,
 .menu {
-    padding: 10px ;
+    padding: 10px;
     width: 200px;
     color: #ffffff;
-
     text-decoration: none;
     border: #cb9221 solid;
 }
 hr {
   border: none;
   height: 2px;
-  /* width: 1500px; */
   background-color: #cb9221;
   margin-left: clamp(16px, 10.4vw, 150px);
   margin-right: clamp(16px, 13.9vw, 200px);
   margin-bottom: 30px;
   margin-top: 30px;
 }
-
 
 /* about */
 
@@ -535,13 +466,8 @@ hr {
     padding-bottom: 120px;
 }
 .left{
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* color:#d8cfc2; */
     text-align:left;
-    /* text-align: center; */
     color:#c0a887;
-    /* display: flex; */
 }
 #about .left{
     flex: 0 1 800px;
@@ -552,12 +478,7 @@ hr {
     font-size: 1.5em;
     font-weight: bold;
 }
-.root{
-    font-family:'Cormorant Garamond', serif;
-    /* font-style: italic; */
-    font-size: clamp(40px, 9vw, 80px);
-    color:#ffffff;
-}
+.root,
 .refined{
     font-family:'Cormorant Garamond', serif;
     font-size: clamp(40px, 9vw, 80px);
@@ -567,19 +488,18 @@ hr {
     color:#c0a887;
     font-style: italic;
 }
-.story1{
-    max-width: 650px;
-    font-size: larger;
-    margin-top: 15px;
-    color:#d8cfc2;
-    font-family: Arial, Helvetica, sans-serif;
-}
+.story1,
 .story2{
     max-width: 650px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
-    margin-top: 8px;
     color:#d8cfc2;
+}
+.story1{
+    margin-top: 15px;
+}
+.story2{
+    margin-top: 8px;
 }
 .fill{
     display: flex;
@@ -588,29 +508,11 @@ hr {
     max-width: 700px;
     margin-top: 60px;
 }
-.exp{
+.exp, .rating, .SEATS{
     font-size: xx-large;
-
-    /* width: 250px; */
 }
-.yr{
-    font-size:medium;
-}
-.rating{
-    font-size: xx-large;
-
-    /* width: 250px; */
-}
-.rat{
-    font-size:medium;
-}
-.SEATS{
-    font-size: xx-large;
-
-    /* width: 250px; */
-}
-.st{
-    font-size:medium;
+.yr, .rat, .st{
+    font-size: medium;
 }
 #about .right{
     position: relative;
@@ -628,7 +530,6 @@ hr {
     object-fit: cover;
     position:absolute;
     top: 380px;
-    /* left: 10px; */
     right: 330px;
     border:  8px solid rgb(4, 4, 4);
 
@@ -656,8 +557,6 @@ hr {
     font-style: italic;
 }
 .types{
-    /* height: 150px; */
-    /* background-color: #f0eeec; */
     margin-top: 50px;
     margin-bottom: 30px;
     padding: 0 16px;
@@ -675,27 +574,13 @@ hr {
 }
 
 .btn-types{
+    padding: 10px 14px;
     min-height: 44px;
     color: #c0a887;
-    /* color:#d8cfc2; */
     background: transparent;
     cursor: pointer;
     transition: 0.3s;
     border:  none;
-
-}
-/* .btn-types:hover {
-  
-    color: #c0a887;
-    /* color:#d8cfc2; */
-    /* background: #d8cfc2;  */
-/* }
-.reserve-table > a{
-    color: #000000;
-    text-decoration: none; */
-/* } */
-.btn-types:hover{
-    color: #f1d7a7;
 }
 .btn-types.active{
     color: #f1d7a7;
@@ -731,21 +616,16 @@ h3.food_name{
 .about_food{
     display: block;
     padding: 8px 20px 0;
+    color: #ebc798;
 }
 .food_name{
-    /* background-color: #c07015; */
     color: #ffffff;
     margin: 10px;
     font-size: larger;
-    font-style: bold;
     margin-right:40px;
 }
 .Food_price{
     color: #f2b866;
-}
-.about_food{
-    color: #ebc798;
-    
 }
 .menu_info{
     color: #ebc798;
@@ -811,7 +691,6 @@ h3.food_name{
     display: flex;
     gap: 40px;
     padding-bottom: 80px;
-    /* width: 1000px; */
 }
 .reservation .left{
     flex: 0 1 600px;
@@ -822,19 +701,14 @@ h3.food_name{
     flex: 1 1 0;
     min-width: 0;
 }
-.left{
-    text-align: left;
-}
 .res{
     margin-top: 10px;
     font-size: 40px;
-    /* font-style: italic; */
     color: #d8cfc2;
 }
 .eve{
     font-size: 40px;
     color: #d8cfc2;
-
 }
 .d{
     margin-top: 15px;
@@ -864,19 +738,13 @@ h3.food_name{
 
 .info-box p{
     color: #fff;
-    /* font-size: px; */
     line-height: 1.8;
     margin: 0;
 }
 
 .reservation-form{
-    /* width: 100%; */
     padding: 50px;
 }
-
-.reservation-form form{
-    width: 100%;
-} 
 
 .row{
     display: flex;
@@ -889,11 +757,6 @@ h3.food_name{
     min-width: 0;
     display: flex;
     flex-direction: column;
-}
-.field input,
-.field select,
-.field textarea{
-    width: 100%;
 }
 /* Form fields always show the ring when focused (incl. the date picker's
    day/month/year segments, which don't trigger :focus-visible) */
@@ -919,7 +782,6 @@ h3.food_name{
 
 .field label{
     color: #b89558;
-    /* font-size: px; */
     letter-spacing: 4px;
     margin-bottom: 12px;
 }
@@ -927,7 +789,7 @@ h3.food_name{
 .field input,
 .field select,
 .field textarea{
-    /* width: 100%; */
+    width: 100%;
     background: #16110b;
     border: 1px solid rgba(184,149,88,.3);
     color: #fff;
@@ -1015,55 +877,6 @@ textarea:focus{
     border-color: #c8ab71;
 }
 
-body{
-    background: #090603;
-    font-family: serif;
-}
-/* 
-footer
-*/
-/* .footer{
-    height: 500px;
-    background-color: rgba(36, 22, 15, 0.85);
-    color: antiquewhite;
-    
-    /* display: flex; */
-/* }
-
-.upper_foot{
-    display: flex;
-    height: 400px;
-} */
-/* .foot{ */
-/* height: 40px; */
-/* width: 520.8px; */
-/* }
-.timeline{
-    width: 250px;
-}
-.contact-details{
-    width: 250px;
-} */
-/* .navigate{
-    width: 250px;
-    
-}
-.social-media{
-    width: 250px;
-}
-.lower_foot{
-    display: flex;
-
-}
-.rights{
-    height: 100px;
-    width: 760.4px;
-}
-.privacy-link{
-    height: 100px;
-    width: 760.4px;
-} */ 
-
 .footer{
     background: #000;
     color: #c9a96e;
@@ -1102,6 +915,7 @@ footer
 
 .tagline{
     display: block;
+    padding-left: 1px;
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 12px;
@@ -1137,9 +951,9 @@ footer
     margin-bottom: 12px;
 }
 
-.hours{
+.timeline .hours{
     color: #fff;
-    margin-bottom: 25px !important;
+    margin-bottom: 25px;
 }
 
 /* Contact */
@@ -1304,7 +1118,6 @@ footer
 }
 
 @media(max-width:1000px){
-
     .upper_foot{
         flex-direction: column;
         gap: 50px;

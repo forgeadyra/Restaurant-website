@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "images": "node scripts/convert-images.mjs",
-    "brand-assets": "node scripts/make-brand-assets.mjs"
+    "brand-assets": "node scripts/make-brand-assets.mjs",
+    "build": "node scripts/build.mjs"
   },
   "devDependencies": {
     "sharp": "^0.35.5"

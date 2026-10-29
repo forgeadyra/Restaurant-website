@@ -210,7 +210,7 @@ function toISODate(date) {
 
 // Menu data. To add a dish, add an object here. `image` is optional:
 // leave it out and the dish renders as a text-only card.
-// Image paths are written without extension; a .webp and .jpg must both exist.
+// `webp` and `jpg` must both exist (run `npm run images` after adding a photo).
 const MENU = [
     // Starters
     { category: 'starters', name: 'Smoked Paneer Tikka', price: 495, description: 'Charcoal-smoked paneer, hung-curd marinade, mint chutney.' },
@@ -225,7 +225,7 @@ const MENU = [
     // Desserts
     {
         category: 'desserts', name: 'Thandai Kulfi', price: 345, description: 'Saffron, fennel, rose, pistachio.',
-        image: { src: 'images/thandai-kulfi', width: 720, height: 1107, alt: 'Three sticks of thandai kulfi on a dark plate, scattered with pistachio and almond' }
+        image: { webp: 'images/thandai-kulfi.webp', jpg: 'images/thandai-kulfi.jpg', width: 720, height: 720, alt: 'Three sticks of thandai kulfi on a dark plate, scattered with pistachio and almond' }
     },
     { category: 'desserts', name: 'Mathura Peda Cheesecake', price: 395, description: "Our tribute to the city's famous sweet." },
     { category: 'desserts', name: 'Chocolate Bavarois', price: 425, description: 'Dark chocolate mousse, berry compote.' },
@@ -233,7 +233,7 @@ const MENU = [
     // Beverages
     {
         category: 'beverages', name: 'Alphonso Mango Shake', price: 245, description: 'Alphonso mango and chilled milk, finished with cream and pistachio.',
-        image: { src: 'images/mango-shake', width: 736, height: 1104, alt: 'Two tall glasses of mango shake topped with cream, pistachio and a cherry' }
+        image: { webp: 'images/mango-shake.webp', jpg: 'images/mango-shake.jpg', width: 736, height: 736, alt: 'Two tall glasses of mango shake topped with cream, pistachio and a cherry' }
     },
     { category: 'beverages', name: 'Kesar Thandai', price: 225, description: 'Chilled milk with saffron, almond, fennel and rose.' }
 ];
@@ -243,8 +243,8 @@ const formatPrice = (amount) => `₹${amount.toLocaleString('en-IN')}`;
 function dishCard(dish) {
     const picture = dish.image
         ? `<picture>
-                <source srcset="${dish.image.src}.webp" type="image/webp" />
-                <img src="${dish.image.src}.jpg" alt="${dish.image.alt}" width="${dish.image.width}" height="${dish.image.height}" loading="lazy" />
+                <source srcset="${dish.image.webp}" type="image/webp" />
+                <img src="${dish.image.jpg}" alt="${dish.image.alt}" width="${dish.image.width}" height="${dish.image.height}" loading="lazy" />
             </picture>`
         : '';
 
